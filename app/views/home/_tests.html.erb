@@ -1,0 +1,44 @@
+<h2>Tests</h2>
+<p>
+  Below you can find the several tests/framework functionality included in this module:
+<p>
+
+<% if active_modules.include?('base') %>
+<h3>Base tests enabled</h3>
+<ul>
+  <li>ActionView automatic protection:
+    <ul>
+      <li><%= link_to 'no automatic protection', base_test_automatic_protection_form_path('disabled') %></li>
+      <li><%= link_to 'automatic protection', base_test_automatic_protection_form_path('standard') %></li>
+    </ul>
+  </li>
+  <li>ActionView::Helpers::SanitizeHelper methods:
+    <ul>
+      <li><%= link_to 'strip_tags', base_test_sanitize_helper_form_path('strip_tags') %></li>
+      <li>Sanitize:
+        <%= link_to 'sanitize (none allowed)', base_test_sanitize_helper_form_path('sanitize', 'none') %>
+        <%= link_to 'sanitize (no tags allowed)', base_test_sanitize_helper_form_path('sanitize', 'no_tags') %>
+        <%= link_to 'sanitize (no attributes allowed)', base_test_sanitize_helper_form_path('sanitize', 'no_attributes') %>
+        <%= link_to 'sanitize (custom allowed)', base_test_sanitize_helper_form_path('sanitize', 'custom') %>
+        <%= link_to 'sanitize (default)', base_test_sanitize_helper_form_path('sanitize', 'default') %>
+      </li>
+    </ul>
+  </li>
+  <li>ActionView::Helpers::TagHelper:
+    <ul>
+      <li><%= link_to 'escape_once', base_test_tag_helper_form_path('escape_once') %></li>
+    </ul>
+  </li>
+  <li>ERB::Util methods:
+    <ul>
+      <li><%= link_to 'h', base_test_erb_util_form_path('h') %></li>
+      <li><%= link_to 'html_escape', base_test_erb_util_form_path('html_escape') %></li>
+      <li><%= link_to 'html_escape_once', base_test_erb_util_form_path('html_escape_once') %></li>
+    </ul>
+  </li>
+</ul>
+<p>Disable by removing 'base' from BENCHMARK_MODULES</p>
+<% else %>
+<h3>Base tests disabled</h3>
+<p>Enable by adding 'base' to BENCHMARK_MODULES</p>
+<% end %>
