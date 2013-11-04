@@ -1,13 +1,17 @@
 class ApplicationController < ActionController::Base
-  #protect_from_forgery with: :exception # Disabled as a precaution (it could hinder the dynamic scanners)
+  include BeforeRender
+
+  protect_from_forgery with: :exception # Disabled as a precaution (it could hinder the dynamic scanners)
   respond_to :html
 
   rescue_from StandardError, :with => :handle_exception # Safe rescue possible exceptions if needed (to prevent false positives)
 
   before_filter :parse_method
 
-  BENCHMARK_MODULES = ['base']
+  BENCHMARK_MODULES = ['base', 'url_helper']
   RUN_MODE = nil # Let the system decide based on the environment
+
+  #before_render { @result = @result.html_safe if @result.present? } # Make sure all results are marked as html safe just before render
 
   def running?
     return RUN_MODE if RUN_MODE.present?
@@ -41,7 +45,7 @@ class ApplicationController < ActionController::Base
   def handle_exception(exception)
     if safe_rescue_exception?(exception)
       # This exception should be safely rescued to prevent false positive for the dynamic scanners. Log the exception
-      message = " Automatic handled " + exception.class.to_s + ": " + exception.message + " to prevent false positive"
+      message = "Automatic handled " + exception.class.to_s + ": " + exception.message + " to prevent false positive"
       logger.debug message
       flash[:alert] = message unless running?
       # Try to render the normal controller action (although with empty results) as if everything is well

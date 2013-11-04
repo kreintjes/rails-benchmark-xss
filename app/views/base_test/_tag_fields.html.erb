@@ -1,0 +1,20 @@
+<div class="field">
+  <%= label_tag :tag %>
+  <%= select_tag :tag, options_for_select(BaseTestController::TAG_OPTIONS), prompt: "Choose..." %>
+</div>
+<div class="field">
+  <%= label_tag :attribute_key %>
+  <%= select_tag :attribute_key, options_for_select(BaseTestController::ATTRIBUTE_KEY_OPTIONS), prompt: "Choose..." %>
+</div>
+<div class="field">
+  <%= label_tag :attribute_value %>
+  <%= text_field_tag :attribute_value %>
+</div>
+<div class="field">
+  <%= label_tag :data_attribute_key %>
+  <%= select_tag :data_attribute_key, options_for_select(BaseTestController::DATA_ATTRIBUTE_KEY_OPTIONS), prompt: "Choose..." %>
+</div>
+<div class="field">
+  <%= label_tag :data_attribute_value %>
+  <%= text_field_tag :data_attribute_value %>
+</div>

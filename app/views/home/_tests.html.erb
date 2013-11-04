@@ -14,26 +14,40 @@
   </li>
   <li>ActionView::Helpers::SanitizeHelper methods:
     <ul>
-      <li><%= link_to 'strip_tags', base_test_sanitize_helper_form_path('strip_tags') %></li>
-      <li>Sanitize:
-        <%= link_to 'sanitize (none allowed)', base_test_sanitize_helper_form_path('sanitize', 'none') %>
-        <%= link_to 'sanitize (no tags allowed)', base_test_sanitize_helper_form_path('sanitize', 'no_tags') %>
-        <%= link_to 'sanitize (no attributes allowed)', base_test_sanitize_helper_form_path('sanitize', 'no_attributes') %>
-        <%= link_to 'sanitize (custom allowed)', base_test_sanitize_helper_form_path('sanitize', 'custom') %>
-        <%= link_to 'sanitize (default)', base_test_sanitize_helper_form_path('sanitize', 'default') %>
+      <li>sanitize:
+        <%= link_to 'no tags no attributes allowed', base_test_sanitize_helper_form_path('sanitize', 'none') %>
+        <%= link_to 'no tags allowed', base_test_sanitize_helper_form_path('sanitize', 'no_tags') %>
+        <%= link_to 'no attributes allowed', base_test_sanitize_helper_form_path('sanitize', 'no_attributes') %>
+        <%= link_to 'custom tags and attributes allowed', base_test_sanitize_helper_form_path('sanitize', 'custom') %>
+        <%= link_to 'default', base_test_sanitize_helper_form_path('sanitize', 'default') %>
       </li>
+      <li><%= link_to 'sanitize_css', base_test_sanitize_helper_form_path('sanitize_css') %></li>
+      <li><%= link_to 'strip_tags', base_test_sanitize_helper_form_path('strip_tags') %></li>
     </ul>
   </li>
   <li>ActionView::Helpers::TagHelper:
     <ul>
+      <li>content_tag:
+        <%= link_to 'content as param', base_test_tag_helper_form_path('content_tag', 'param') %>
+        <%= link_to 'content as block', base_test_tag_helper_form_path('content_tag', 'block') %>
+      </li>
       <li><%= link_to 'escape_once', base_test_tag_helper_form_path('escape_once') %></li>
+      <li>tag:
+        <%= link_to 'open false', base_test_tag_helper_form_path('tag', 'open_false') %>
+        <%= link_to 'open true', base_test_tag_helper_form_path('tag', 'open_true') %>
+      </li>
+    </ul>
+  </li>
+  <li>ActionView::Helpers::JavaScriptHelper:
+    <ul>
+      <li><%= link_to 'escape_javascript', base_test_javascript_helper_form_path('escape_javascript') %></li>
     </ul>
   </li>
   <li>ERB::Util methods:
     <ul>
-      <li><%= link_to 'h', base_test_erb_util_form_path('h') %></li>
       <li><%= link_to 'html_escape', base_test_erb_util_form_path('html_escape') %></li>
       <li><%= link_to 'html_escape_once', base_test_erb_util_form_path('html_escape_once') %></li>
+      <li><%= link_to 'json_escape', base_test_erb_util_form_path('json_escape') %></li>
     </ul>
   </li>
 </ul>
@@ -41,4 +55,38 @@
 <% else %>
 <h3>Base tests disabled</h3>
 <p>Enable by adding 'base' to BENCHMARK_MODULES</p>
+<% end %>
+
+<% if active_modules.include?('url_helper') %>
+<h3>URL helper tests enabled</h3>
+<ul>
+  <li>Helpers:
+    <ul>
+      <li>button_to:
+        <%= link_to 'name as param', url_helper_test_helpers_form_path('button_to', 'param') %>
+        <%= link_to 'name as block', url_helper_test_helpers_form_path('button_to', 'block') %>
+      </li>
+      <li>link_to:
+        <%= link_to 'name as param', url_helper_test_helpers_form_path('link_to', 'param') %>
+        <%= link_to 'name as block', url_helper_test_helpers_form_path('link_to', 'block') %>
+      </li>
+      <li>link_to_if:
+        <%= link_to 'condition true', url_helper_test_helpers_form_path('link_to_if', 'true') %>
+        <%= link_to 'condition false', url_helper_test_helpers_form_path('link_to_if', 'false') %>
+      </li>
+      <li>link_to_unless:
+        <%= link_to 'condition true', url_helper_test_helpers_form_path('link_to_unless', 'true') %>
+        <%= link_to 'condition false', url_helper_test_helpers_form_path('link_to_unless', 'false') %>
+      </li>
+      <li>mail_to:
+        <%= link_to 'name as param', url_helper_test_helpers_form_path('mail_to', 'param') %>
+        <%= link_to 'name as block', url_helper_test_helpers_form_path('mail_to', 'block') %>
+      </li>
+    </ul>
+  </li>
+</ul>
+<p>Disable by removing 'url_helper' from BENCHMARK_MODULES</p>
+<% else %>
+<h3>URL helper tests disabled</h3>
+<p>Enable by adding 'url_helper' to BENCHMARK_MODULES</p>
 <% end %>

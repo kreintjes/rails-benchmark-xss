@@ -1,0 +1,8 @@
+<p>Assign @result to Javascript json var and write it:</p>
+
+<script type="text/javascript">
+  var json = <%= @result %>;
+  document.write(json);
+</script>
+
+<p>Was @result HTML Safe? <%= @result.html_safe? ? 'Yes' : 'No' %></p>

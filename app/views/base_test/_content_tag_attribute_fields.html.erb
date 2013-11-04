@@ -1,0 +1,16 @@
+<div class="field">
+  <%= label_tag :attribute_key %>
+  <%= select_tag :attribute_key, options_for_select(['class', 'style', 'disabled', 'scoped']), prompt: "Choose..." %>
+</div>
+<div class="field">
+  <%= label_tag :attribute_value %>
+  <%= text_area_tag :attribute_value %>
+</div>
+<div class="field">
+  <%= label_tag :data_key %>
+  <%= select_tag :data_key, options_for_select(['test-key-1', 'test-key-2']), prompt: "Choose..." %>
+</div>
+<div class="field">
+  <%= label_tag :data_value %>
+  <%= text_area_tag :data_value %>
+</div>
