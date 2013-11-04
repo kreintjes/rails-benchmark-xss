@@ -129,5 +129,6 @@ private
     options = {}
     options.merge!({ params[:attribute_key] => params[:attribute_value] }) if params[:attribute_key].present? && ATTRIBUTE_KEY_OPTIONS.include?(params[:attribute_key]) # Check if key is allowed, since it is not escaped
     options.merge!({ :data => { params[:data_attribute_key] => params[:data_attribute_value] } }) if params[:data_attribute_key].present? && DATA_ATTRIBUTE_KEY_OPTIONS.include?(params[:data_attribute_key]) # Check if key is allowed, since it is not escaped
+    options
   end
 end

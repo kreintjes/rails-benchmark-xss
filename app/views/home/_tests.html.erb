@@ -3,8 +3,7 @@
   Below you can find the several tests/framework functionality included in this module:
 <p>
 
-<% if active_modules.include?('base') %>
-<h3>Base tests enabled</h3>
+<%= render_module_tests('base') do %>
 <ul>
   <li>ActionView automatic protection:
     <ul>
@@ -51,14 +50,9 @@
     </ul>
   </li>
 </ul>
-<p>Disable by removing 'base' from BENCHMARK_MODULES</p>
-<% else %>
-<h3>Base tests disabled</h3>
-<p>Enable by adding 'base' to BENCHMARK_MODULES</p>
 <% end %>
 
-<% if active_modules.include?('url_helper') %>
-<h3>URL helper tests enabled</h3>
+<%= render_module_tests('url_helper', 'URL helper') do %>
 <ul>
   <li>Helpers:
     <ul>
@@ -85,8 +79,16 @@
     </ul>
   </li>
 </ul>
-<p>Disable by removing 'url_helper' from BENCHMARK_MODULES</p>
-<% else %>
-<h3>URL helper tests disabled</h3>
-<p>Enable by adding 'url_helper' to BENCHMARK_MODULES</p>
+<% end %>
+
+<%= render_module_tests('text_helper') do %>
+<ul>
+  <li>Helpers:
+    <ul>
+      <li><%= link_to 'highlight', text_helper_test_helpers_form_path('highlight') %></li>
+      <li><%= link_to 'simple_format', text_helper_test_helpers_form_path('simple_format') %></li>
+      <li><%= link_to 'truncate', text_helper_test_helpers_form_path('truncate') %></li>
+    </ul>
+  </li>
+</ul>
 <% end %>

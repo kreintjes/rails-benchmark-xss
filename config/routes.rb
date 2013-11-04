@@ -18,6 +18,10 @@ Sqli::Application.routes.draw do
   match "url_helper_test/helpers_form/:method(/:option)", :controller => 'url_helper_test', :action => 'helpers_form', :via => 'get', :as => 'url_helper_test_helpers_form'
   match "url_helper_test/helpers_perform/:method(/:option)", :controller => 'url_helper_test', :action => 'helpers_perform', :via => 'post', :as => 'url_helper_test_helpers_perform'
 
+  # Text helper tests
+  match "text_helper_test/helpers_form/:method(/:option)", :controller => 'text_helper_test', :action => 'helpers_form', :via => 'get', :as => 'text_helper_test_helpers_form'
+  match "text_helper_test/helpers_perform/:method(/:option)", :controller => 'text_helper_test', :action => 'helpers_perform', :via => 'post', :as => 'text_helper_test_helpers_perform'
+
   # Catch all to disable logging of routing errors
   match '*path', :via => [:get, :post], :controller => 'application', :action => 'show_404'
 end

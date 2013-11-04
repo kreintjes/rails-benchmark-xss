@@ -47,7 +47,7 @@ class UrlHelperTestController < ApplicationController
       form_options.merge!({ :style => params[:form_style] }) if params[:form_style].present?
       options.merge!({ :form => form_options }) if form_options.present?
       options.merge!({ :form_class => params[:form_class] }) if params[:form_class].present?
-      options.merge!({ :method => :get }) # To disable CSRF protection, since it does not work for Abstract Controller
+      options.merge!({ :method => :get }) # Needed to disable CSRF protection, since it does not work for Abstract Controller
     end
     if type == 'mail_to'
       ['cc', 'bcc', 'subject', 'body'].each do |option|

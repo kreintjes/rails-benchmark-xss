@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
 
   before_filter :parse_method
 
-  BENCHMARK_MODULES = ['base', 'url_helper']
+  BENCHMARK_MODULES = ['base', 'url_helper', 'text_helper']
   RUN_MODE = nil # Let the system decide based on the environment
 
   #before_render { @result = @result.html_safe if @result.present? } # Make sure all results are marked as html safe just before render
