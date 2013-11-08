@@ -31,7 +31,10 @@
   </li>
   <li>ActionView::Helpers::JavaScriptHelper:
     <ul>
-      <li><%= link_to 'escape_javascript', base_test_javascript_helper_form_path('escape_javascript') %></li>
+      <li>escape_javascript:
+        <%= link_to 'normal', base_test_javascript_helper_form_path('escape_javascript', 'normal') %>
+        <%= link_to 'html_safe', base_test_javascript_helper_form_path('escape_javascript', 'html_safe') %>
+      </li>
     </ul>
   </li>
   <li>ERB::Util methods:

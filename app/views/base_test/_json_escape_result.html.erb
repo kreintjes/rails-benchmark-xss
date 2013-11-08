@@ -1,8 +1,10 @@
 <p>Assign @result to Javascript json var and write it:</p>
 
+<div id="result" style="margin-bottom: 1em;">Result holder</div>
+
 <script type="text/javascript">
   var json = <%= @result %>;
-  document.write(json);
+  $('#result').html(json);
 </script>
 
 <p>Was @result HTML Safe? <%= @result.html_safe? ? 'Yes' : 'No' %></p>

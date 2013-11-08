@@ -1,0 +1,15 @@
+<div style="margin-bottom: 1em;">
+<%= javascript_tag do %>
+  var s = '<%= @result %>';
+  console.log(s);
+<% end %>
+</div>
+
+<div style="margin-bottom: 1em;">
+<%= javascript_tag do %>
+  var d = "<%= @result %>";
+  console.log(d);
+<% end %>
+</div>
+
+<p>Was @result HTML Safe? <%= @result.html_safe? ? 'Yes' : 'No' %></p>

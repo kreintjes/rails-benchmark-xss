@@ -1,5 +1,6 @@
 class BaseTestController < ApplicationController
   def automatic_protection_form
+    render 'shared/simple_form'
   end
 
   def automatic_protection_perform
@@ -11,9 +12,11 @@ class BaseTestController < ApplicationController
     else
       raise "Unknown method '#{params[:method]}'"
     end
+    render 'shared/simple_perform'
   end
 
   def sanitize_helper_form
+    render 'shared/simple_form'
   end
 
   def sanitize_helper_perform
@@ -46,9 +49,11 @@ class BaseTestController < ApplicationController
     else
       @partial = 'shared/simple_result'
     end
+    render 'shared/simple_perform'
   end
 
   def tag_helper_form
+    render 'shared/simple_form'
   end
 
   def tag_helper_perform
@@ -58,21 +63,27 @@ class BaseTestController < ApplicationController
     else
       raise "Unknown method '#{params[:method]}'"
     end
+    render 'shared/simple_perform'
   end
 
   def javascript_helper_form
+    render 'shared/simple_form'
   end
 
   def javascript_helper_perform
     case params[:method]
     when 'escape_javascript'
       @result = ActionController::Base.helpers.send(params[:method], params[:input])
+      @result = @result.html_safe if params[:option] == 'html_safe'
     else
       raise "Unknown method '#{params[:method]}'"
     end
+    @partial = 'javascript_helper_result'
+    render 'shared/simple_perform'
   end
 
   def erb_util_form
+    render 'shared/simple_form'
   end
 
   def erb_util_perform
@@ -93,5 +104,6 @@ class BaseTestController < ApplicationController
     else
       @partial = 'shared/simple_result'
     end
+    render 'shared/simple_perform'
   end
 end
