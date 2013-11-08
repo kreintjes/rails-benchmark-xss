@@ -21,3 +21,7 @@
 
 en:
   hello: "Hello world"
+  key1: 'Normal key that is <strong>not HTML safe</strong>. Some data: %{data}. Some count: %{count}.'
+  key2_html: 'HTML safe key with underscore that is <strong>HTML safe</strong>. Some data: %{data}. Some count: %{count}.'
+  key3:
+    html: 'HTML safe key with dot that is <strong>HTML safe</strong>. Some data: %{data}. Some count: %{count}.'

@@ -9,8 +9,7 @@ class TextHelperTestController < ApplicationController
       @result = ActionController::Base.helpers.send(params[:method], params[:text], params[:phrases])
     when 'simple_format'
       check_tag_allowed(:content_tag, :options_wrapper)
-      options = {}
-      options = { :wrapper_tag => params[:options_wrapper_tag] } if params[:options_wrapper_tag].present?
+      options = (params[:options_wrapper_tag].present? ? { :wrapper_tag => params[:options_wrapper_tag] } : {})
       @result = ActionController::Base.helpers.send(params[:method], params[:text], set_html_options(), options)
     when 'truncate'
       options = (params[:omission].present? ? { :omission => params[:omission] } : {})

@@ -92,3 +92,22 @@
   </li>
 </ul>
 <% end %>
+
+<%= render_module_tests('translation_helper') do %>
+<ul>
+  <li>Helpers:
+    <ul>
+      <li>Translate:
+        <%= link_to 'key1', translation_helper_test_helpers_form_path('translate', 'key1') %>
+        <%= link_to 'key2', translation_helper_test_helpers_form_path('translate', 'key2_html') %>
+        <%= link_to 'key3', translation_helper_test_helpers_form_path('translate', 'key3html') %>
+        <%= link_to 'missing_key', translation_helper_test_helpers_form_path('translate', 'missing_key') %>
+        <%= link_to 'missing_key_with_default_data', translation_helper_test_helpers_form_path('translate', 'missing_key_with_default_data') %>
+        <%= link_to 'missing_key_with_default_key1', translation_helper_test_helpers_form_path('translate', 'missing_key_with_default_key1') %>
+        <%= link_to 'missing_key_with_default_key2_html', translation_helper_test_helpers_form_path('translate', 'missing_key_with_default_key2_html') %>
+        <%= link_to 'missing_key_with_default_key3html', translation_helper_test_helpers_form_path('translate', 'missing_key_with_default_key3html') %>
+      </li>
+    </ul>
+  </li>
+</ul>
+<% end %>

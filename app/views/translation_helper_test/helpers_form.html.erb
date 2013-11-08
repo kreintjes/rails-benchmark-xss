@@ -1,0 +1,15 @@
+<h1><%= params[:controller].humanize %> - <%= params[:action].humanize %> - <%= params[:method].humanize %></h1>
+
+<%= form_tag(translation_helper_test_helpers_perform_path(encode_method(params[:method]), params[:option])) do %>
+  <div class="field">
+    <%= label_tag(:data) %>
+    <%= text_area_tag(:data) %>
+  </div>
+  <div class="field">
+    <%= label_tag(:count) %>
+    <%= text_field_tag(:count) %>
+  </div>
+  <div class="actions">
+    <%= submit_tag "Submit" %>
+  </div>
+<% end %>
