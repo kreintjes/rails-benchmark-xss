@@ -1,12 +1,7 @@
 class NormalHelpersTestController < ApplicationController
    def tag_helper_form
     # Determine partial
-    case params[:method]
-    when 'content_tag'
-      @partial = 'content_tag_fields'
-    when 'tag'
-      @partial = 'tag_fields'
-    end
+    @method_partial = params[:method] + '_fields'
     render 'shared/simple_form'
   end
 
@@ -30,7 +25,8 @@ class NormalHelpersTestController < ApplicationController
   end
 
   def text_helper_form
-    @partial = params[:method] + '_fields'
+    @method_partial = params[:method] + '_fields'
+    @partial = 'text_helper_fields'
     render 'shared/simple_form'
   end
 
@@ -54,7 +50,7 @@ class NormalHelpersTestController < ApplicationController
   end
 
   def translation_helper_form
-    @partial = 'translate_fields'
+    @partial = 'translation_fields'
     render 'shared/simple_form'
   end
 
@@ -74,10 +70,11 @@ class NormalHelpersTestController < ApplicationController
   def url_helper_form
     case params[:method]
     when 'link_to', 'link_to_unless', 'link_to_if', 'link_to_unless_current'
-      @partial = 'link_to_fields'
+      @method_partial = 'link_to_fields'
     else
-      @partial = params[:method] + '_fields'
+      @method_partial = params[:method] + '_fields'
     end
+    @partial = 'url_helper_fields'
     render 'shared/simple_form'
   end
 
