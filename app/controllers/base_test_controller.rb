@@ -49,30 +49,10 @@ class BaseTestController < ApplicationController
   end
 
   def tag_helper_form
-    # Determine partial
-    case params[:method]
-    when 'content_tag'
-      @partial = 'content_tag_fields'
-    when 'tag'
-      @partial = 'tag_fields'
-    else
-      @partial = 'simple_input'
-    end
   end
 
   def tag_helper_perform
     case params[:method]
-    when 'content_tag'
-      check_tag_allowed(:content_tag)
-      case params[:option]
-      when 'param'
-        @result = ActionController::Base.helpers.send(params[:method], params[:html_tag], params[:content], set_html_options())
-      when 'block'
-        @result = ActionController::Base.helpers.send(params[:method], params[:html_tag], set_html_options()) { "Block + content: " + params[:content] }
-      end
-    when 'tag'
-      check_tag_allowed(:empty_tag)
-      @result = ActionController::Base.helpers.send(params[:method], params[:html_tag], set_html_options(), params[:option] == 'open_true')
     when 'escape_once'
       @result = ActionController::Base.helpers.send(params[:method], params[:input])
     else

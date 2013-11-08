@@ -26,15 +26,7 @@
   </li>
   <li>ActionView::Helpers::TagHelper:
     <ul>
-      <li>content_tag:
-        <%= link_to 'content as param', base_test_tag_helper_form_path('content_tag', 'param') %>
-        <%= link_to 'content as block', base_test_tag_helper_form_path('content_tag', 'block') %>
-      </li>
       <li><%= link_to 'escape_once', base_test_tag_helper_form_path('escape_once') %></li>
-      <li>tag:
-        <%= link_to 'open false', base_test_tag_helper_form_path('tag', 'open_false') %>
-        <%= link_to 'open true', base_test_tag_helper_form_path('tag', 'open_true') %>
-      </li>
     </ul>
   </li>
   <li>ActionView::Helpers::JavaScriptHelper:
@@ -52,62 +44,65 @@
 </ul>
 <% end %>
 
-<%= render_module_tests('url_helper', 'URL helper') do %>
+<%= render_module_tests('normal_helpers') do %>
 <ul>
-  <li>Helpers:
+  <li>ActionView::Helpers::TagHelper:
+    <ul>
+      <li>content_tag:
+        <%= link_to 'content as param', normal_helpers_test_tag_helper_form_path('content_tag', 'param') %>
+        <%= link_to 'content as block', normal_helpers_test_tag_helper_form_path('content_tag', 'block') %>
+      </li>
+      <li>tag:
+        <%= link_to 'open false', normal_helpers_test_tag_helper_form_path('tag', 'open_false') %>
+        <%= link_to 'open true', normal_helpers_test_tag_helper_form_path('tag', 'open_true') %>
+      </li>
+    </ul>
+  </li>
+  <li>ActionView::Helpers::UrlHelper:
     <ul>
       <li>button_to:
-        <%= link_to 'name as param', url_helper_test_helpers_form_path('button_to', 'param') %>
-        <%= link_to 'name as block', url_helper_test_helpers_form_path('button_to', 'block') %>
+        <%= link_to 'name as param', normal_helpers_test_url_helper_form_path('button_to', 'param') %>
+        <%= link_to 'name as block', normal_helpers_test_url_helper_form_path('button_to', 'block') %>
       </li>
       <li>link_to:
-        <%= link_to 'name as param', url_helper_test_helpers_form_path('link_to', 'param') %>
-        <%= link_to 'name as block', url_helper_test_helpers_form_path('link_to', 'block') %>
+        <%= link_to 'name as param', normal_helpers_test_url_helper_form_path('link_to', 'param') %>
+        <%= link_to 'name as block', normal_helpers_test_url_helper_form_path('link_to', 'block') %>
       </li>
       <li>link_to_if:
-        <%= link_to 'condition true', url_helper_test_helpers_form_path('link_to_if', 'true') %>
-        <%= link_to 'condition false', url_helper_test_helpers_form_path('link_to_if', 'false') %>
+        <%= link_to 'condition true', normal_helpers_test_url_helper_form_path('link_to_if', 'true') %>
+        <%= link_to 'condition false', normal_helpers_test_url_helper_form_path('link_to_if', 'false') %>
       </li>
       <li>link_to_unless:
-        <%= link_to 'condition true', url_helper_test_helpers_form_path('link_to_unless', 'true') %>
-        <%= link_to 'condition false', url_helper_test_helpers_form_path('link_to_unless', 'false') %>
+        <%= link_to 'condition true', normal_helpers_test_url_helper_form_path('link_to_unless', 'true') %>
+        <%= link_to 'condition false', normal_helpers_test_url_helper_form_path('link_to_unless', 'false') %>
       </li>
       <li>mail_to:
-        <%= link_to 'name as param', url_helper_test_helpers_form_path('mail_to', 'param') %>
-        <%= link_to 'name as block', url_helper_test_helpers_form_path('mail_to', 'block') %>
+        <%= link_to 'name as param', normal_helpers_test_url_helper_form_path('mail_to', 'param') %>
+        <%= link_to 'name as block', normal_helpers_test_url_helper_form_path('mail_to', 'block') %>
       </li>
     </ul>
   </li>
-</ul>
-<% end %>
-
-<%= render_module_tests('text_helper') do %>
-<ul>
-  <li>Helpers:
+  <li>ActionView::Helpers::TextHelper:
     <ul>
-      <li><%= link_to 'highlight', text_helper_test_helpers_form_path('highlight') %></li>
-      <li><%= link_to 'simple_format', text_helper_test_helpers_form_path('simple_format') %></li>
-      <li><%= link_to 'truncate', text_helper_test_helpers_form_path('truncate') %></li>
+      <li><%= link_to 'highlight', normal_helpers_test_text_helper_form_path('highlight') %></li>
+      <li><%= link_to 'simple_format', normal_helpers_test_text_helper_form_path('simple_format') %></li>
+      <li><%= link_to 'truncate', normal_helpers_test_text_helper_form_path('truncate') %></li>
     </ul>
   </li>
-</ul>
-<% end %>
-
-<%= render_module_tests('translation_helper') do %>
-<ul>
-  <li>Helpers:
+  <li>ActionView::Helpers::TranslationHelper:
     <ul>
       <li>Translate:
-        <%= link_to 'key1', translation_helper_test_helpers_form_path('translate', 'key1') %>
-        <%= link_to 'key2', translation_helper_test_helpers_form_path('translate', 'key2_html') %>
-        <%= link_to 'key3', translation_helper_test_helpers_form_path('translate', 'key3html') %>
-        <%= link_to 'missing_key', translation_helper_test_helpers_form_path('translate', 'missing_key') %>
-        <%= link_to 'missing_key_with_default_data', translation_helper_test_helpers_form_path('translate', 'missing_key_with_default_data') %>
-        <%= link_to 'missing_key_with_default_key1', translation_helper_test_helpers_form_path('translate', 'missing_key_with_default_key1') %>
-        <%= link_to 'missing_key_with_default_key2_html', translation_helper_test_helpers_form_path('translate', 'missing_key_with_default_key2_html') %>
-        <%= link_to 'missing_key_with_default_key3html', translation_helper_test_helpers_form_path('translate', 'missing_key_with_default_key3html') %>
+        <%= link_to 'key1', normal_helpers_test_translation_helper_form_path('translate', 'key1') %>
+        <%= link_to 'key2', normal_helpers_test_translation_helper_form_path('translate', 'key2_html') %>
+        <%= link_to 'key3', normal_helpers_test_translation_helper_form_path('translate', 'key3html') %>
+        <%= link_to 'missing_key', normal_helpers_test_translation_helper_form_path('translate', 'missing_key') %>
+        <%= link_to 'missing_key_with_default_data', normal_helpers_test_translation_helper_form_path('translate', 'missing_key_with_default_data') %>
+        <%= link_to 'missing_key_with_default_key1', normal_helpers_test_translation_helper_form_path('translate', 'missing_key_with_default_key1') %>
+        <%= link_to 'missing_key_with_default_key2_html', normal_helpers_test_translation_helper_form_path('translate', 'missing_key_with_default_key2_html') %>
+        <%= link_to 'missing_key_with_default_key3html', normal_helpers_test_translation_helper_form_path('translate', 'missing_key_with_default_key3html') %>
       </li>
     </ul>
   </li>
 </ul>
 <% end %>
+
