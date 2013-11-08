@@ -1,4 +1,5 @@
-<%= render 'tag_fields' %>
+<%= render 'shared/html_tag_field', :type => :content_tag %>
+<%= render 'shared/html_attribute_fields' %>
 <div class="field">
   <%= label_tag :content %>
   <%= text_area_tag :content %>

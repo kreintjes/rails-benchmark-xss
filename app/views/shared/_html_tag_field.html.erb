@@ -1,0 +1,6 @@
+<% type ||= :tag %>
+<% prefix ||= :html %>
+<div class="field">
+  <%= label_tag "#{prefix}_tag" %>
+  <%= select_tag "#{prefix}_tag", options_for_select(html_tag_options_for_type(type)), prompt: "Choose..." %>
+</div>

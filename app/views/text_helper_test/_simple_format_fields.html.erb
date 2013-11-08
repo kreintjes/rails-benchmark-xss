@@ -1,4 +1,2 @@
-<div class="field">
-  <%= label_tag :html_options_style %>
-  <%= text_field_tag :html_options_style %>
-</div>
+<%= render 'shared/html_tag_field', :type => :content_tag, :prefix => :options_wrapper %>
+<%= render 'shared/html_attribute_fields' %>

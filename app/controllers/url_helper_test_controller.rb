@@ -36,16 +36,12 @@ class UrlHelperTestController < ApplicationController
 
   def options(type = 'link_to')
     options = {}
-      if ['button_to', 'link_to'].include?(type)
-      data_options = {}
-      data_options.merge!({ :confirm => params[:data_confirm] }) if params[:data_confirm].present?
-      data_options.merge!({ :disable_with => params[:data_disable_with] }) if params[:data_disable_with].present?
-      options.merge!({ :data => data_options }) if data_options.present?
-    end
+    data_options = {}
+    data_options.merge!({ :confirm => params[:data_confirm] }) if params[:data_confirm].present?
+    data_options.merge!({ :disable_with => params[:data_disable_with] }) if params[:data_disable_with].present?
+    options.merge!({ :data => data_options }) if data_options.present?
     if type == 'button_to'
-      form_options = {}
-      form_options.merge!({ :style => params[:form_style] }) if params[:form_style].present?
-      options.merge!({ :form => form_options }) if form_options.present?
+      options = set_html_options(options, :form, :form)
       options.merge!({ :form_class => params[:form_class] }) if params[:form_class].present?
       options.merge!({ :method => :get }) # Needed to disable CSRF protection, since it does not work for Abstract Controller
     end
@@ -54,6 +50,6 @@ class UrlHelperTestController < ApplicationController
         options.merge!({ option => params[option] }) if params[option].present?
       end
     end
-    options
+    set_html_options(options, :link)
   end
 end
