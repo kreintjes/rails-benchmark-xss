@@ -12,6 +12,7 @@ class BaseTestController < ApplicationController
     else
       raise "Unknown method '#{params[:method]}'"
     end
+    @partial = 'simple_result'
     render 'shared/simple_perform'
   end
 
@@ -47,7 +48,7 @@ class BaseTestController < ApplicationController
     when 'sanitize_css'
       @partial = 'sanitize_css_result'
     else
-      @partial = 'shared/simple_result'
+      @partial = 'simple_result'
     end
     render 'shared/simple_perform'
   end
@@ -63,6 +64,7 @@ class BaseTestController < ApplicationController
     else
       raise "Unknown method '#{params[:method]}'"
     end
+    @partial = 'simple_result'
     render 'shared/simple_perform'
   end
 
@@ -102,7 +104,7 @@ class BaseTestController < ApplicationController
     when 'json_escape'
       @partial = 'json_escape_result'
     else
-      @partial = 'shared/simple_result'
+      @partial = 'simple_result'
     end
     render 'shared/simple_perform'
   end

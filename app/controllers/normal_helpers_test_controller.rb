@@ -74,7 +74,6 @@ class NormalHelpersTestController < ApplicationController
     else
       @method_partial = params[:method] + '_fields'
     end
-    @partial = 'url_helper_fields'
     render 'shared/simple_form'
   end
 

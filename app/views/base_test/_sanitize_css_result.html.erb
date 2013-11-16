@@ -1,3 +1,11 @@
+<strong>CSS style attribute context:</strong>
 <p style="<%= @result %>">P tag with @result in style attribute</p>
+
+<strong>CSS style tag context:</strong>
+<% content_for(:head_style) do %>
+body {
+  <%= @result %>
+}
+<% end %>
 
 <p>Was @result HTML Safe? <%= @result.html_safe? ? 'Yes' : 'No' %></p>

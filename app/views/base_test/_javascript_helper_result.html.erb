@@ -1,14 +1,18 @@
+<strong>Javascript string single quote context:</strong>
 <div style="margin-bottom: 1em;">
 <%= javascript_tag do %>
   var s = '<%= @result %>';
   console.log(s);
+  console.log('<%= @result %>');
 <% end %>
 </div>
 
+<strong>Javascript string double quote context:</strong>
 <div style="margin-bottom: 1em;">
 <%= javascript_tag do %>
   var d = "<%= @result %>";
   console.log(d);
+  console.log("<%= @result %>");
 <% end %>
 </div>
 
