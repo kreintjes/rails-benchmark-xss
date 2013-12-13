@@ -49,7 +49,19 @@
 
 <%= render_module_tests('normal_helpers') do %>
 <ul>
-  <li>ActionView::Helpers::TagHelper:
+  ActiveModelHelper?: No direct methods. No html_safe/raw calls
+  AssetTagHelper: 8 methods
+  AssetURLHelper?: 31 methods. No html_safe/raw calls
+  AtomFeedHelper: atom_feed? No html_safe/raw calls
+  CacheHelper? No html_safe/raw calls
+  CsrfHelper: csrf_meta_tags?
+  DateHelper: 16 methods
+  DebugHelper: debug?
+  JavaScriptHelper: javascript_tag, javascript_cdata_section
+  NumberHelper: 7 helpers
+  OutputSafetyHelper: safe_join
+  RecordTagHelper
+  <li>ActionView::Helpers::TagHelper
     <ul>
       <li>content_tag:
         <%= link_to 'content as param', normal_helpers_test_tag_helper_form_path('content_tag', 'param') %>
@@ -58,6 +70,28 @@
       <li>tag:
         <%= link_to 'open false', normal_helpers_test_tag_helper_form_path('tag', 'open_false') %>
         <%= link_to 'open true', normal_helpers_test_tag_helper_form_path('tag', 'open_true') %>
+      </li>
+      cdata_section?
+    </ul>
+  </li>
+  <li>ActionView::Helpers::TextHelper:
+    <ul>
+      <li><%= link_to 'highlight', normal_helpers_test_text_helper_form_path('highlight') %></li>
+      <li><%= link_to 'simple_format', normal_helpers_test_text_helper_form_path('simple_format') %></li>
+      <li><%= link_to 'truncate', normal_helpers_test_text_helper_form_path('truncate') %></li>
+    </ul>
+  </li>
+  <li>ActionView::Helpers::TranslationHelper:
+    <ul>
+      <li>Translate:
+        <%= link_to 'key1', normal_helpers_test_translation_helper_form_path('translate', 'key1') %>
+        <%= link_to 'key2', normal_helpers_test_translation_helper_form_path('translate', 'key2_html') %>
+        <%= link_to 'key3', normal_helpers_test_translation_helper_form_path('translate', 'key3html') %>
+        <%= link_to 'missing_key', normal_helpers_test_translation_helper_form_path('translate', 'missing_key') %>
+        <%= link_to 'missing_key_with_default_data', normal_helpers_test_translation_helper_form_path('translate', 'missing_key_with_default_data') %>
+        <%= link_to 'missing_key_with_default_key1', normal_helpers_test_translation_helper_form_path('translate', 'missing_key_with_default_key1') %>
+        <%= link_to 'missing_key_with_default_key2_html', normal_helpers_test_translation_helper_form_path('translate', 'missing_key_with_default_key2_html') %>
+        <%= link_to 'missing_key_with_default_key3html', normal_helpers_test_translation_helper_form_path('translate', 'missing_key_with_default_key3html') %>
       </li>
     </ul>
   </li>
@@ -85,27 +119,14 @@
       </li>
     </ul>
   </li>
-  <li>ActionView::Helpers::TextHelper:
-    <ul>
-      <li><%= link_to 'highlight', normal_helpers_test_text_helper_form_path('highlight') %></li>
-      <li><%= link_to 'simple_format', normal_helpers_test_text_helper_form_path('simple_format') %></li>
-      <li><%= link_to 'truncate', normal_helpers_test_text_helper_form_path('truncate') %></li>
-    </ul>
-  </li>
-  <li>ActionView::Helpers::TranslationHelper:
-    <ul>
-      <li>Translate:
-        <%= link_to 'key1', normal_helpers_test_translation_helper_form_path('translate', 'key1') %>
-        <%= link_to 'key2', normal_helpers_test_translation_helper_form_path('translate', 'key2_html') %>
-        <%= link_to 'key3', normal_helpers_test_translation_helper_form_path('translate', 'key3html') %>
-        <%= link_to 'missing_key', normal_helpers_test_translation_helper_form_path('translate', 'missing_key') %>
-        <%= link_to 'missing_key_with_default_data', normal_helpers_test_translation_helper_form_path('translate', 'missing_key_with_default_data') %>
-        <%= link_to 'missing_key_with_default_key1', normal_helpers_test_translation_helper_form_path('translate', 'missing_key_with_default_key1') %>
-        <%= link_to 'missing_key_with_default_key2_html', normal_helpers_test_translation_helper_form_path('translate', 'missing_key_with_default_key2_html') %>
-        <%= link_to 'missing_key_with_default_key3html', normal_helpers_test_translation_helper_form_path('translate', 'missing_key_with_default_key3html') %>
-      </li>
-    </ul>
-  </li>
 </ul>
 <% end %>
 
+Form Helpers:
+  FormHelper: 24 methods. No direct html_safe/raw calls
+  FormOptionsHelper: 11 methods.
+  FormTagHelper: 29 methods.
+  <em>Many overlap between FormHelper, FormTagHelper and Tags.</em>
+
+Tags:
+  33 files (all classes?)
