@@ -50,7 +50,7 @@ class NormalHelpersTestController < ApplicationController
   end
 
   def translation_helper_form
-    @partial = 'translation_fields'
+    @partial = 'translation_helper_fields'
     render 'shared/simple_form'
   end
 
