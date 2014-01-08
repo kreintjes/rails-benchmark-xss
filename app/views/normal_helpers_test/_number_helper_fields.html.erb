@@ -1,0 +1,10 @@
+<div class="field">
+  <%= label_tag(:number) %>
+  <%= text_field_tag(:number) %>
+</div>
+<%= render @method_partial if @method_partial.present? %>
+
+<h2>Options</h2>
+<% @option_fields.each do |option, default| %>
+  <%= render 'number_helper_option_field', option: option, default: default %>
+<% end %>

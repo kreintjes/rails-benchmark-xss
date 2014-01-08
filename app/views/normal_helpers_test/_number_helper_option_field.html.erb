@@ -1,0 +1,19 @@
+<% if default.is_a?(Hash) %>
+  <fieldset>
+    <legend><%= option %></legend>
+    <% default.each do |inner_option, inner_default| %>
+      <%= render 'number_helper_option_field', option: "#{option}[#{inner_option}]", default: inner_default %>
+    <% end %>
+  </fieldset>
+<% else %>
+<div class="field">
+  <%= label_tag(option) %>
+  <% if default.is_a?(TrueClass) || default.is_a?(FalseClass) %>
+    <%= check_box_tag(option, '1', default) %>
+  <% elsif default.is_a?(Array) %>
+    <%= select_tag(option, options_for_select(default)) %>
+  <% else %>
+    <%= text_field_tag(option, default) %>
+  <% end %>
+</div>
+<% end %>

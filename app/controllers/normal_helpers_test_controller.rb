@@ -1,7 +1,27 @@
 class NormalHelpersTestController < ApplicationController
-   def tag_helper_form
+  def number_helper_form
+    @option_fields = options_with_defaults_for_method(params[:method], params[:option])
+    @partial = 'number_helper_fields'
+    render 'shared/simple_form'
+  end
+
+  def number_helper_perform
+    case params[:method]
+    when 'number_to_currency', 'number_to_human', 'number_to_human_size', 'number_to_percentage', 'number_to_phone', 'number_with_delimiter', 'number_with_precision'
+      @result = ActionController::Base.helpers.send(params[:method], params[:number], build_options_for_method(params[:method], params[:option], params))
+    else
+      raise "Unknown method '#{params[:method]}'"
+    end
+    render 'shared/simple_perform'
+  end
+
+  def tag_helper_form
     # Determine partial
-    @method_partial = params[:method] + '_fields'
+    if params[:method] == 'cdata_section'
+      # Use simple input
+    else
+      @method_partial = params[:method] + '_fields'
+    end
     render 'shared/simple_form'
   end
 
@@ -18,6 +38,8 @@ class NormalHelpersTestController < ApplicationController
     when 'tag'
       check_tag_allowed(:empty_tag)
       @result = ActionController::Base.helpers.send(params[:method], params[:html_tag], set_html_options(), params[:option] == 'open_true')
+    when 'cdata_section'
+      @result = ActionController::Base.helpers.send(params[:method], params[:input])
     else
       raise "Unknown method '#{params[:method]}'"
     end
@@ -57,12 +79,17 @@ class NormalHelpersTestController < ApplicationController
   def translation_helper_perform
     case params[:method]
     when 'translate'
-      if params[:option] =~ /missing_key_with_default_/
-        default = params[:option] == 'missing_key_with_default_data' ? params[:data] : translation_key_name(params[:option])
-        @result = ActionController::Base.helpers.send(params[:method], :missing_key, :default => default, :data => params[:data], :count => params[:count].to_i)
+      case params[:default]
+      when 'no_default'
+        default = nil
+      when 'key1', 'key2', 'key3', 'missing_key'
+        default = translation_key_name(params[:default])
+      when 'data'
+        default = params[:data]
       else
-        @result = ActionController::Base.helpers.send(params[:method], translation_key_name(params[:option]), :data => params[:data], :count => params[:count].to_i)
+        default = params[:default]
       end
+      @result = ActionController::Base.helpers.send(params[:method], translation_key_name(params[:key]), :default => default, :data => params[:data], :count => params[:count].to_i)
     end
     render 'shared/simple_perform'
   end
@@ -105,6 +132,56 @@ class NormalHelpersTestController < ApplicationController
   end
 
 private
+  def options_with_defaults_for_method(method, option)
+    case method
+    when 'number_to_currency'
+      { locale: I18n.locale, precision: 2, unit: '$', separator: '.', delimiter: ',', format: '%u%n', negative_format: '-%u%n', raise: false }
+    when 'number_to_human'
+      { locale: I18n.locale, precision: 3, significant: true, separator: '.', delimiter: '', strip_insignificant_zeros: true, units: unit_options_with_defaults_for_option(option), format: '%n %u', raise: false }
+    when 'number_to_human_size'
+      { locale: I18n.locale, precision: 3, significant: true, separator: '.', delimiter: '', strip_insignificant_zeros: true, prefix: [:binary, :si], raise: false }
+    when 'number_to_percentage'
+      { locale: I18n.locale, precision: 3, significant: false, separator: '.', delimiter: '', strip_insignificant_zeros: false, format: '%n%', raise: false }
+    when 'number_to_phone'
+      { area_code: false, delimiter: '-', extension: nil, country_code: nil, raise: false }
+    when 'number_with_delimiter'
+      { locale: I18n.locale, separator: '.', delimiter: ',', raise: false }
+    when 'number_with_precision'
+      { locale: I18n.locale, precision: 3, sigfnificant: false, separator: '.', delimiter: ',', strip_insignificant_zeros: false, raise: false }
+    else
+      {}
+    end
+  end
+
+  def unit_options_with_defaults_for_option(option)
+    case option
+    when 'units_as_hash'
+      units = { femto: nil, pico: nil, nano: nil, micro: nil, mili: nil, centi: nil, deci: nil, unit: nil, ten: nil, hundred: nil, thousand: nil, million: nil, billion: nil, trillion: nil, quadrillion: nil }
+    else
+      units = nil
+    end
+  end
+
+  def build_options_for_method(method, option, params)
+    options = {}
+    options_with_defaults_for_method(method, option).each do |option, default|
+      if default.is_a?(Hash)
+        value = params[option].to_hash.symbolize_keys!.delete_if { |k,v| v.blank? }
+      elsif default.is_a?(TrueClass) || default.is_a?(FalseClass)
+        value = params[option].present? # Boolean option
+      elsif default.is_a?(Array)
+        value = default.find(Proc.new { params[option] }) { |d| d.to_s == params[option] } if params[option].present? # Array option: get first matching element from default or otherwise return param value
+      elsif default.is_a?(Integer)
+        value = params[option].to_i if params[option].present? # Integer option
+      else
+        value = params[option] if params[option].present? # Text option
+      end
+      options[option] = value
+    end
+    puts options.inspect
+    options
+  end
+
   def url_helper_options(type = 'link_to')
     options = {}
     data_options = {}
@@ -124,14 +201,18 @@ private
     set_html_options(options, :link)
   end
 
-  def translation_key_name(option)
-    case option
-    when 'key3html'
+  def translation_key_name(key)
+    case key
+    when 'key1'
+      :key1
+    when 'key2'
+      :key2_html
+    when 'key3'
       :'key3.html'
-    when /missing_key_with_default_/
-      translation_key_name(option.gsub('missing_key_with_default_', ''))
+    when 'data'
+      params[:data]
     else
-      option.to_sym
+      key
     end
   end
 end

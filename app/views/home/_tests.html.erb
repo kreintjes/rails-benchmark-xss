@@ -49,20 +49,23 @@
 
 <%= render_module_tests('normal_helpers') do %>
 <ul>
-  ActiveModelHelper?: No direct methods. No html_safe/raw calls
-  AssetTagHelper: 8 methods
-  AssetURLHelper?: 31 methods. No html_safe/raw calls
-  AtomFeedHelper: atom_feed? No html_safe/raw calls
-  CacheHelper? No html_safe/raw calls
-  CsrfHelper: csrf_meta_tags?
-  DateHelper: 16 methods
-  DebugHelper: debug?
-  JavaScriptHelper: javascript_tag, javascript_cdata_section
-  NumberHelper: 7 helpers
-  OutputSafetyHelper: safe_join
-  RecordTagHelper
+  <li>ActionView::Helpers::NumberHelper
+    <ul>
+      <li><%= link_to 'number_to_currency', normal_helpers_test_number_helper_form_path('number_to_currency') %></li>
+      <li>number_to_human:
+        <%= link_to 'units_as_string', normal_helpers_test_number_helper_form_path('number_to_human', 'units_as_string') %>
+        <%= link_to 'units_as_hash', normal_helpers_test_number_helper_form_path('number_to_human', 'units_as_hash') %>
+      </li>
+      <li><%= link_to 'number_to_human_size', normal_helpers_test_number_helper_form_path('number_to_human_size') %></li>
+      <li><%= link_to 'number_to_percentage', normal_helpers_test_number_helper_form_path('number_to_percentage') %></li>
+      <li><%= link_to 'number_to_phone', normal_helpers_test_number_helper_form_path('number_to_phone') %></li>
+      <li><%= link_to 'number_with_delimiter', normal_helpers_test_number_helper_form_path('number_with_delimiter') %></li>
+      <li><%= link_to 'number_with_precision', normal_helpers_test_number_helper_form_path('number_with_precision') %></li>
+    </ul>
+  </li>
   <li>ActionView::Helpers::TagHelper
     <ul>
+      <li><%= link_to 'cdata_section', normal_helpers_test_tag_helper_form_path('cdata_section') %></li>
       <li>content_tag:
         <%= link_to 'content as param', normal_helpers_test_tag_helper_form_path('content_tag', 'param') %>
         <%= link_to 'content as block', normal_helpers_test_tag_helper_form_path('content_tag', 'block') %>
@@ -71,7 +74,6 @@
         <%= link_to 'open false', normal_helpers_test_tag_helper_form_path('tag', 'open_false') %>
         <%= link_to 'open true', normal_helpers_test_tag_helper_form_path('tag', 'open_true') %>
       </li>
-      cdata_section?
     </ul>
   </li>
   <li>ActionView::Helpers::TextHelper:
@@ -83,16 +85,7 @@
   </li>
   <li>ActionView::Helpers::TranslationHelper:
     <ul>
-      <li>Translate:
-        <%= link_to 'key1', normal_helpers_test_translation_helper_form_path('translate', 'key1') %>
-        <%= link_to 'key2', normal_helpers_test_translation_helper_form_path('translate', 'key2_html') %>
-        <%= link_to 'key3', normal_helpers_test_translation_helper_form_path('translate', 'key3html') %>
-        <%= link_to 'missing_key', normal_helpers_test_translation_helper_form_path('translate', 'missing_key') %>
-        <%= link_to 'missing_key_with_default_data', normal_helpers_test_translation_helper_form_path('translate', 'missing_key_with_default_data') %>
-        <%= link_to 'missing_key_with_default_key1', normal_helpers_test_translation_helper_form_path('translate', 'missing_key_with_default_key1') %>
-        <%= link_to 'missing_key_with_default_key2_html', normal_helpers_test_translation_helper_form_path('translate', 'missing_key_with_default_key2_html') %>
-        <%= link_to 'missing_key_with_default_key3html', normal_helpers_test_translation_helper_form_path('translate', 'missing_key_with_default_key3html') %>
-      </li>
+      <li><%= link_to 'translate', normal_helpers_test_translation_helper_form_path('translate') %></li>
     </ul>
   </li>
   <li>ActionView::Helpers::UrlHelper:
@@ -120,13 +113,31 @@
     </ul>
   </li>
 </ul>
+
+<em>Unimplemented normal helpers:</em>
+<ul>
+  <li>ActiveModelHelper?: No direct methods. No html_safe/raw calls</li>
+  <li>AssetTagHelper: 8 methods</li>
+  <li>AssetURLHelper?: 31 methods. No html_safe/raw calls</li>
+  <li>AtomFeedHelper: atom_feed? No html_safe/raw calls</li>
+  <li>CacheHelper?: No html_safe/raw calls</li>
+  <li>CsrfHelper: csrf_meta_tags?</li>
+  <li>DateHelper: 16 methods</li>
+  <li>DebugHelper: debug?</li>
+  <li>JavaScriptHelper: javascript_tag, javascript_cdata_section</li>
+  <li>NumberHelper: 7 helpers</li>
+  <li>OutputSafetyHelper: safe_join</li>
+  <li>RecordTagHelper</li>
+</ul>
 <% end %>
 
-Form Helpers:
-  FormHelper: 24 methods. No direct html_safe/raw calls
-  FormOptionsHelper: 11 methods.
-  FormTagHelper: 29 methods.
-  <em>Many overlap between FormHelper, FormTagHelper and Tags.</em>
+<%= render_module_tests('form_helpers') do %>
+  <em>Completely unimplemented</em>
+  <ul>
+    <li>FormHelper: 24 methods. No direct html_safe/raw calls</li>
+    <li>FormOptionsHelper: 11 methods.</li>
+    <li>FormTagHelper: 29 methods.</li>
+  </ul>
+  Note: many overlap between FormHelper, FormTagHelper and Tags.
+<% end %>
 
-Tags:
-  33 files (all classes?)

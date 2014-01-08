@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 
   before_filter :parse_method
 
-  BENCHMARK_MODULES = ['base', 'normal_helpers']
+  BENCHMARK_MODULES = ['base', 'normal_helpers', 'form_helpers']
   RUN_MODE = nil # Let the system decide based on the environment
 
   HTML_CONTENT_TAG_OPTIONS = ['div', 'p', 'strong']

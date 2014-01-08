@@ -15,6 +15,8 @@ Sqli::Application.routes.draw do
   match "base_test/erb_util_perform/:method(/:option)", :controller => 'base_test', :action => 'erb_util_perform', :via => 'post', :as => 'base_test_erb_util_perform'
 
   # Normal helper tests
+  match "normal_helpers_test/number_helper_form/:method(/:option)", :controller => 'normal_helpers_test', :action => 'number_helper_form', :via => 'get', :as => 'normal_helpers_test_number_helper_form'
+  match "normal_helpers_test/number_helper_perform/:method(/:option)", :controller => 'normal_helpers_test', :action => 'number_helper_perform', :via => 'post', :as => 'normal_helpers_test_number_helper_perform'
   match "normal_helpers_test/tag_helper_form/:method(/:option)", :controller => 'normal_helpers_test', :action => 'tag_helper_form', :via => 'get', :as => 'normal_helpers_test_tag_helper_form'
   match "normal_helpers_test/tag_helper_perform/:method(/:option)", :controller => 'normal_helpers_test', :action => 'tag_helper_perform', :via => 'post', :as => 'normal_helpers_test_tag_helper_perform'
   match "normal_helpers_test/text_helper_form/:method(/:option)", :controller => 'normal_helpers_test', :action => 'text_helper_form', :via => 'get', :as => 'normal_helpers_test_text_helper_form'

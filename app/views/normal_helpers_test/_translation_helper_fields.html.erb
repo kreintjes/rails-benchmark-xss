@@ -1,4 +1,12 @@
 <div class="field">
+  <%= label_tag(:key) %>
+  <%= select_tag(:key, options_for_select([['Key 1 (no HTML)', :key1], ['Key 2 (HTML through underscore)', :key2], ['Key 3 (HTML through subitem)', :key3], ['Data (use data as key name)', :data], ['Missing key (to trigger default)', :missing_key]])) %>
+</div>
+<div class="field">
+  <%= label_tag(:default) %>
+  <%= select_tag(:default, options_for_select([:no_default, :key1, :key2, :key3, :another_missing_key, :data])) %>
+</div>
+<div class="field">
   <%= label_tag(:data) %>
   <%= text_area_tag(:data) %>
 </div>
