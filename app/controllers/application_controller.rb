@@ -7,13 +7,13 @@ class ApplicationController < ActionController::Base
   BENCHMARK_MODULES = ['base', 'normal_helpers', 'form_helpers', 'injection']
   RUN_MODE = nil # Let the system decide based on the environment
 
-  HTML_CONTENT_TAG_OPTIONS = ['div', 'p', 'strong']
+  HTML_CONTENT_TAG_OPTIONS = ['div', 'p']
   HTML_EMPTY_TAG_OPTIONS = ['input', 'br']
   HTML_TAG_OPTIONS = HTML_CONTENT_TAG_OPTIONS + HTML_EMPTY_TAG_OPTIONS
-  HTML_STRING_ATTRIBUTE_KEY_OPTIONS = ['class', 'style']
-  HTML_BOOLEAN_ATTRIBUTE_KEY_OPTIONS = ['disabled', 'scoped']
+  HTML_STRING_ATTRIBUTE_KEY_OPTIONS = ['style']
+  HTML_BOOLEAN_ATTRIBUTE_KEY_OPTIONS = ['disabled']
   HTML_ATTRIBUTE_KEY_OPTIONS = HTML_STRING_ATTRIBUTE_KEY_OPTIONS + HTML_BOOLEAN_ATTRIBUTE_KEY_OPTIONS
-  HTML_DATA_ATTRIBUTE_KEY_OPTIONS = ['test-key-1', 'test-key-2']
+  HTML_DATA_ATTRIBUTE_KEY_OPTIONS = ['test-key']
 
   def running?
     return RUN_MODE if RUN_MODE.present?
@@ -67,8 +67,8 @@ class ApplicationController < ActionController::Base
   # Set HTML options
   def set_html_options(options = {}, prefix = :html, hash_prefix = nil)
     extra_options = {}
-    extra_options.merge!({ params["#{prefix}_attribute_key"] => params["#{prefix}_attribute_value"] }) if params["#{prefix}_attribute_key"].present? && ApplicationController::HTML_ATTRIBUTE_KEY_OPTIONS.include?(params["#{prefix}_attribute_key"]) # Check if key is allowed, since it is not escaped
-    extra_options.merge!({ :data => { params["#{prefix}_data_attribute_key"] => params["#{prefix}_data_attribute_value"] } }) if params["#{prefix}_data_attribute_key"].present? && ApplicationController::HTML_DATA_ATTRIBUTE_KEY_OPTIONS.include?(params["#{prefix}_data_attribute_key"]) # Check if key is allowed, since it is not escaped
+    extra_options.merge!({ params["#{prefix}_attribute_key"] => params["#{prefix}_attribute_value"] }) if params["#{prefix}_attribute_value"].present? && params["#{prefix}_attribute_key"].present? && ApplicationController::HTML_ATTRIBUTE_KEY_OPTIONS.include?(params["#{prefix}_attribute_key"]) # Check if key is allowed, since it is not escaped
+    extra_options.merge!({ :data => { params["#{prefix}_data_attribute_key"] => params["#{prefix}_data_attribute_value"] } }) if params["#{prefix}_data_attribute_value"].present? && params["#{prefix}_data_attribute_key"].present? && ApplicationController::HTML_DATA_ATTRIBUTE_KEY_OPTIONS.include?(params["#{prefix}_data_attribute_key"]) # Check if key is allowed, since it is not escaped
     extra_options = { hash_prefix => extra_options } if hash_prefix.present?
     options.deep_merge!(extra_options)
   end

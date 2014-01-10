@@ -1,7 +1,7 @@
 <% prefix ||= :html %>
 <div class="field">
   <%= label_tag "#{prefix}_attribute_key" %>
-  <%= select_tag "#{prefix}_attribute_key", options_for_select(ApplicationController::HTML_ATTRIBUTE_KEY_OPTIONS), prompt: "Choose..." %>
+  <%= select_tag "#{prefix}_attribute_key", options_for_select(ApplicationController::HTML_ATTRIBUTE_KEY_OPTIONS) %>
 </div>
 <div class="field">
   <%= label_tag "#{prefix}_attribute_value" %>
@@ -9,7 +9,7 @@
 </div>
 <div class="field">
   <%= label_tag "#{prefix}_data_attribute_key" %>
-  <%= select_tag "#{prefix}_data_attribute_key", options_for_select(ApplicationController::HTML_DATA_ATTRIBUTE_KEY_OPTIONS), prompt: "Choose..." %>
+  <%= select_tag "#{prefix}_data_attribute_key", options_for_select(ApplicationController::HTML_DATA_ATTRIBUTE_KEY_OPTIONS) %>
 </div>
 <div class="field">
   <%= label_tag "#{prefix}_data_attribute_value" %>
