@@ -1,0 +1,13 @@
+<strong>HTML body context:</strong>
+<div style="margin-bottom: 1em;"><%= @result %></div>
+
+<strong>HTML attribute context:</strong>
+<div style="margin-bottom: 1em;" attribute="<%= @result %>">Div with @result in attribute</div>
+
+<strong>HTML link href context:</strong>
+<div style="margin-bottom: 1em;"><a href="<%= @result %>">Link with @result in href</a></div>
+
+<strong>HTML img src context:</strong>
+<div style="margin-bottom: 1em;"><img src="<%= @result %>" /> IMG with @result in src</div>
+
+<p>Was @result HTML Safe? <%= @result.html_safe? ? 'Yes' : 'No' %></p>

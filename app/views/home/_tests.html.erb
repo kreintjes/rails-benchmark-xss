@@ -7,7 +7,6 @@
 <ul>
   <li>ActionView automatic protection:
     <ul>
-      <li><%= link_to 'no automatic protection', base_test_automatic_protection_form_path('disabled') %></li>
       <li><%= link_to 'automatic protection', base_test_automatic_protection_form_path('standard') %></li>
     </ul>
   </li>
@@ -141,3 +140,8 @@
   Note: many overlap between FormHelper, FormTagHelper and Tags.
 <% end %>
 
+<%= render_module_tests('injection') do %>
+<ul>
+  <li><%= link_to 'automatic protection disabled', injection_test_injection_form_path('automatic_protection_disabled') %></li>
+</ul>
+<% end %>

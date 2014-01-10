@@ -5,8 +5,6 @@ class BaseTestController < ApplicationController
 
   def automatic_protection_perform
     case params[:method]
-    when 'disabled'
-      @result = params[:input].html_safe
     when 'standard'
       @result = params[:input]
     else
