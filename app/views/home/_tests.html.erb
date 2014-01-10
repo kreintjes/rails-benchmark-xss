@@ -20,7 +20,10 @@
         <%= link_to 'default', base_test_sanitize_helper_form_path('sanitize', 'default') %>
       </li>
       <li><%= link_to 'sanitize_css', base_test_sanitize_helper_form_path('sanitize_css') %></li>
-      <li><%= link_to 'strip_tags', base_test_sanitize_helper_form_path('strip_tags') %></li>
+      <li>strip_tags:
+        <%= link_to 'normal', base_test_sanitize_helper_form_path('strip_tags', 'normal') %>
+        <%= link_to 'html_safe', base_test_sanitize_helper_form_path('strip_tags', 'html_safe') %>
+      </li>
     </ul>
   </li>
   <li>ActionView::Helpers::TagHelper:

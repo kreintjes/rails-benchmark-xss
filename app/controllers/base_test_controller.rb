@@ -35,7 +35,10 @@ class BaseTestController < ApplicationController
         options = {}
       end
       @result = ActionController::Base.helpers.send(params[:method], params[:input], options)
-    when 'strip_tags', 'sanitize_css'
+    when 'strip_tags'
+      @result = ActionController::Base.helpers.send(params[:method], params[:input])
+      @result = @result.html_safe if params[:option] == 'html_safe'
+    when 'sanitize_css'
       @result = ActionController::Base.helpers.send(params[:method], params[:input])
     else
       raise "Unknown method '#{params[:method]}'"
@@ -46,7 +49,7 @@ class BaseTestController < ApplicationController
     when 'sanitize_css'
       @partial = 'sanitize_css_result'
     else
-      @partial = 'simple_result'
+      @partial = 'shared/simple_result' # Use the shared simple result, since these base sanitize helpers are meant for the HTML body context only
     end
     render 'shared/simple_perform'
   end
