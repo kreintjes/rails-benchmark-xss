@@ -48,7 +48,7 @@ class ApplicationController < ActionController::Base
 
   # The entered tag is not escaped, and should thus be checked
   def check_tag_allowed(type = :tag, prefix = :html)
-    redirect_to :root, :alert => "#{prefix.to_s.humanize} tag (#{params["#{prefix}_tag"]}) not allowed" if params["#{prefix}_tag"].present? && !html_tag_options_for_type(type).include?(params["#{prefix}_tag"])
+    raise "#{prefix.to_s.humanize} tag (#{params["#{prefix}_tag"]}) not allowed" if params["#{prefix}_tag"].present? && !html_tag_options_for_type(type).include?(params["#{prefix}_tag"])
   end
 
   # Return list of allowed HTML tag options for certain tag type
