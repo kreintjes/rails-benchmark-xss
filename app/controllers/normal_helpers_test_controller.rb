@@ -176,7 +176,6 @@ private
       end
       options[option] = value
     end
-    puts options.inspect
     options
   end
 
